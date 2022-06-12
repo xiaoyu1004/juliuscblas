@@ -1,5 +1,6 @@
 #include "julius_asum.hpp"
 #include "utils/simd_types.hpp"
+
 #include <cmath>
 
 namespace juliusblas

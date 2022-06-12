@@ -1,6 +1,6 @@
-
 #ifndef _JULIUS_GEMM_ALIGN_HPP_
 #define _JULIUS_GEMM_ALIGN_HPP_
+
 #include "utils/simd_types.hpp"
 
 namespace juliusblas
@@ -820,8 +820,6 @@ namespace juliusblas
 #endif
 
 #endif //!__ARM_NEON
-}
-}
 }
 
 #endif //!_JULIUS_GEMM_ALIGN_HPP_
