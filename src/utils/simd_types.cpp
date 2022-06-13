@@ -1,7 +1,7 @@
-#include "simd_types.hpp"
-#include "cpu.hpp"
+#include "utils/simd_types.hpp"
+#include "utils/cpu.hpp"
 
-namespace glasssix
+namespace juliusblas
 {
 	// for CUDA, provide device function: unsigned short f16 = __float2half_rn( value );
 	// convert float to half precision floating point
@@ -180,7 +180,7 @@ namespace glasssix
 	{
 		if (num % group != 0)
 		{
-			LOG(FATAL) << "int8_data does not match group!!!";
+            LOGE("int8_data does not match group!!!");
 			return;
 		}
 		int offset = num / group;

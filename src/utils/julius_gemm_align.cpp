@@ -527,7 +527,7 @@ namespace juliusblas
 #define mm_fmadd_ps(A, B, C) _mm_add_ps(_mm_mul_ps(A, B), C)
 #endif
 
-#include "../../include/Julius/julius_sgemm_align128_raw.inc"
+#include "julius_sgemm_align128_raw.inc"
 
 #undef final_sum_q0_4
 #undef final_sum_q0_2
@@ -547,7 +547,7 @@ namespace juliusblas
 #define final_sum_q0_2 (q.s[0] + q.s[1])
 #define final_sum_q (q.s[0] + q.s[1] + q.s[2] + q.s[3] + q.s[4] + q.s[5] + q.s[6] + q.s[7])
 
-#include "../../include/Julius/julius_sgemm_align256_raw.inc"
+#include "julius_sgemm_align256_raw.inc"
 
 #undef CUR_IS_AVX
 #undef final_sum_q0_4

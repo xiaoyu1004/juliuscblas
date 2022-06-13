@@ -1,4 +1,4 @@
-#include "julius_gemm_align.hpp"
+#include "utils/julius_gemm_align.hpp"
 #include "utils/memory.hpp"
 
 namespace juliusblas

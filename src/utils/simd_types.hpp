@@ -1,9 +1,8 @@
 #ifndef _SIMD_TYPES_HPP_
 #define _SIMD_TYPES_HPP_
 
-#include "simd_instruction_set.hpp"
-#include "logger.hpp"
-#include "dllexport.hpp"
+#include "utils/simd_instruction_set.hpp"
+#include "julius/julius_defined.hpp"
 
 #ifdef __GNUC__
 #define __forceinline inline __attribute__((always_inline))
@@ -13,9 +12,9 @@
 #endif
 #endif
 
-namespace glasssix
+namespace juliusblas
 {
-#define NATIVE_CODE_WARNING LOG(WARNING) << "Unhandled Scenario: fall back to native code with extremely low performance."
+#define NATIVE_CODE_WARNING LOGE("Unhandled Scenario: fall back to native code with extremely low performance.")
 
 #if (SIMD_X86_INSTR_SET >= SIMD_X86_SSE_VERSION) && (SIMD_X86_INSTR_SET <= SIMD_X86_SSE4_2_VERSION) //SSE
 #define mm_load_ps _mm_loadu_ps
@@ -313,39 +312,39 @@ namespace glasssix
     //************************types convertors**************************//
 
     // convert float32 to half
-    EXPORT_EXCALIBUR_PRIMITIVES unsigned short float32_to_float16(float value);
+    JULIUS_PUBLIC unsigned short float32_to_float16(float value);
 
     // convert half to float32
-    EXPORT_EXCALIBUR_PRIMITIVES float float16_to_float32(unsigned short value);
+    JULIUS_PUBLIC float float16_to_float32(unsigned short value);
 
     // convert float to brain half
-    EXPORT_EXCALIBUR_PRIMITIVES unsigned short float32_to_bfloat16(float value);
+    JULIUS_PUBLIC unsigned short float32_to_bfloat16(float value);
 
     // convert brain half to float
-    EXPORT_EXCALIBUR_PRIMITIVES float bfloat16_to_float32(unsigned short value);
+    JULIUS_PUBLIC float bfloat16_to_float32(unsigned short value);
 
     // convert float32 to int8
-    EXPORT_EXCALIBUR_PRIMITIVES signed char float32_to_int8(float value);
+    JULIUS_PUBLIC signed char float32_to_int8(float value);
 
     // convert float32 to int8 with SIMD
 #if __ARM_NEON
-    EXPORT_EXCALIBUR_PRIMITIVES int8x8_t float32_to_int8(float32x4_t _vlow, float32x4_t _vhigh);
+    JULIUS_PUBLIC int8x8_t float32_to_int8(float32x4_t _vlow, float32x4_t _vhigh);
 #endif
 
-    EXPORT_EXCALIBUR_PRIMITIVES void int8_to_float(const signed char *int8_data, const float *scales, float *floats, int num, int group);
+    JULIUS_PUBLIC void int8_to_float(const signed char *int8_data, const float *scales, float *floats, int num, int group);
 
 #if (SIMD_X86_INSTR_SET >= SIMD_X86_SSE_VERSION)
     // convert float32 to float16 with SIMD
-    EXPORT_EXCALIBUR_PRIMITIVES void float2half(const float *floats, unsigned short *halfs, int length);
+    JULIUS_PUBLIC void float2half(const float *floats, unsigned short *halfs, int length);
 
     // convert float16 to float32 with SIMD
-    EXPORT_EXCALIBUR_PRIMITIVES void half2float(const unsigned short *halfs, float *floats, int length);
+    JULIUS_PUBLIC void half2float(const unsigned short *halfs, float *floats, int length);
 #endif
 
-    EXPORT_EXCALIBUR_PRIMITIVES float mul_add_3x3_native(const float *r0, const float *r1, const float *r2, const float *k0, const float *k1, const float *k2, float bias);
+    JULIUS_PUBLIC float mul_add_3x3_native(const float *r0, const float *r1, const float *r2, const float *k0, const float *k1, const float *k2, float bias);
 
 #if (SIMD_X86_INSTR_SET >= SIMD_X86_SSE_VERSION) && (SIMD_X86_INSTR_SET <= SIMD_X86_AVX2_VERSION)
-    EXPORT_EXCALIBUR_PRIMITIVES float mul_add_3x3_simd(__m128 r0_data, __m128 r1_data, __m128 r2_data, __m128 k0_data, __m128 k1_data, __m128 k2_data, float bias);
+    JULIUS_PUBLIC float mul_add_3x3_simd(__m128 r0_data, __m128 r1_data, __m128 r2_data, __m128 k0_data, __m128 k1_data, __m128 k2_data, float bias);
 #endif
 }
 #endif // !_SIMD_TYPES_HPP_

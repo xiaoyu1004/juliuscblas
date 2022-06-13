@@ -59,7 +59,7 @@
 #  endif
 #endif //!x86
 
-namespace glasssix
+namespace juliusblas
 {
 #ifdef x86
 	/// Return CPU vendor infomation:\n

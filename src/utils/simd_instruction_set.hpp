@@ -1,6 +1,6 @@
 #ifndef _SIMD_INSTRUCTION_SET_HPP_
 #define _SIMD_INSTRUCTION_SET_HPP_
-#include "cpu.hpp"
+#include "utils/cpu.hpp"
 
 // Simplified version of boost.predef
 

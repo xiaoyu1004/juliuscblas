@@ -1,6 +1,4 @@
-#pragma once
-
-#include "dllexport.hpp"
+#include "julius/julius_defined.hpp"
 
 #include <utility>
 #include <cstdint>
@@ -25,20 +23,20 @@ namespace juliusblas
     /// Throwing exceptions across DLL boundaries is very dangerous for possible different C++ standard libraries.
     /// Thus, we simply terminate the process if any fatal error occurs.
     /// </remarks>
-    [[noreturn]] EXPORT_EXCALIBUR_PRIMITIVES void glasssix_terminate() noexcept;
+    [[noreturn]] JULIUS_PUBLIC void julius_terminate() noexcept;
 
     /// <summary>
     /// Allocates a piece of memory on the heap.
     /// </summary>
     /// <param name="size">The size in bytes</param>
     /// <returns>The memory pointer</returns>
-    EXPORT_EXCALIBUR_PRIMITIVES void *heap_alloc(std::size_t size) noexcept;
+    JULIUS_PUBLIC void *heap_alloc(std::size_t size) noexcept;
 
     /// <summary>
     /// Frees a piece of memory on the heap.
     /// </summary>
     /// <param name="memory">The memory pointer</param>
-    EXPORT_EXCALIBUR_PRIMITIVES void heap_free(void *memory) noexcept;
+    JULIUS_PUBLIC void heap_free(void *memory) noexcept;
 
     /// <summary>
     /// Frees a piece of memory on the heap.
@@ -46,7 +44,7 @@ namespace juliusblas
     /// <param name="memory">The memory pointer</param>
     /// <param name="size">The size in bytes</param>
     /// <returns>The memory pointer</returns>
-    EXPORT_EXCALIBUR_PRIMITIVES void heap_free(void *memory, std::size_t size) noexcept;
+    JULIUS_PUBLIC void heap_free(void *memory, std::size_t size) noexcept;
 
     /// <summary>
     /// Allocates a piece of memory with aligned size.
@@ -54,13 +52,13 @@ namespace juliusblas
     /// <param name="size">The size in bytes</param>
     /// <param name="alignment">Pointer alignment size</param>
     /// <returns>The aligned-pointer</returns>
-    EXPORT_EXCALIBUR_PRIMITIVES void *aligned_heap_alloc(std::size_t size, std::size_t alignment = MALLOC_ALIGN);
+    JULIUS_PUBLIC void *aligned_heap_alloc(std::size_t size, std::size_t alignment = MALLOC_ALIGN);
 
     /// <summary>
     /// Deallocates a piece of aligned memory.
     /// </summary>
     /// <param name="memblock">The aligned-pointer</param>
-    EXPORT_EXCALIBUR_PRIMITIVES void aligned_heap_free(void *memblock);
+    JULIUS_PUBLIC void aligned_heap_free(void *memblock);
 
     /// <summary>
     /// Allocates a piece of memory which contains elements of the specified type on the heap.

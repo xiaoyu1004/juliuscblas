@@ -1,4 +1,4 @@
-#include "cpu.hpp"
+#include "utils/cpu.hpp"
 
 #ifdef _MSC_VER //Windows
 #include <Windows.h>
@@ -17,7 +17,7 @@
 #include <array>
 #include <bitset>
 #include <cstring>
-namespace glasssix
+namespace juliusblas
 {
 #ifdef x86
 

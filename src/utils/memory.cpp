@@ -1,16 +1,16 @@
-#include "memory.hpp"
+#include "utils/memory.hpp"
 
 #include <new>
 #include <exception>
 
 namespace juliusblas
 {
-    EXPORT_EXCALIBUR_PRIMITIVES void glasssix_terminate() noexcept
+    JULIUS_PUBLIC void julius_terminate() noexcept
     {
         std::terminate();
     }
 
-    EXPORT_EXCALIBUR_PRIMITIVES void *heap_alloc(std::size_t size) noexcept
+    JULIUS_PUBLIC void *heap_alloc(std::size_t size) noexcept
     {
         auto buffer = ::operator new(size);
 
@@ -18,13 +18,13 @@ namespace juliusblas
         // As is the principle, we just terminate the process.
         if (buffer == nullptr)
         {
-            glasssix_terminate();
+            julius_terminate();
         }
 
         return buffer;
     }
 
-    EXPORT_EXCALIBUR_PRIMITIVES void heap_free(void *memory) noexcept
+    JULIUS_PUBLIC void heap_free(void *memory) noexcept
     {
         if (memory)
         {
@@ -32,7 +32,7 @@ namespace juliusblas
         }
     }
 
-    EXPORT_EXCALIBUR_PRIMITIVES void heap_free(void *memory, std::size_t size) noexcept
+    JULIUS_PUBLIC void heap_free(void *memory, std::size_t size) noexcept
     {
         if (memory != nullptr)
         {
@@ -50,7 +50,7 @@ namespace juliusblas
         return (_Tp *)(((size_t)ptr + n - 1) & -n);
     }
 
-    EXPORT_EXCALIBUR_PRIMITIVES void *aligned_heap_alloc(std::size_t size, std::size_t alignment)
+    JULIUS_PUBLIC void *aligned_heap_alloc(std::size_t size, std::size_t alignment)
     {
         // check the size of alignment is pow of 2
         if (alignment & (alignment - 1))
@@ -65,7 +65,7 @@ namespace juliusblas
         return adata;
     }
 
-    EXPORT_EXCALIBUR_PRIMITIVES void aligned_heap_free(void *memblock)
+    JULIUS_PUBLIC void aligned_heap_free(void *memblock)
     {
         unsigned char *udata = ((unsigned char **)memblock)[-1];
         if (udata != nullptr)

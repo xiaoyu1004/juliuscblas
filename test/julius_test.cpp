@@ -66,9 +66,9 @@ double _test_gemm(int M, int N, int K, int iters, float thresh, bool show)
     {
         for (int i = 0; i < iters; i++)
         {
-            glasssix::excalibur::cblas_sgemm(glasssix::excalibur::CblasRowMajor,
-                                             glasssix::excalibur::CBLAS_TRANSPOSE(TransA),
-                                             glasssix::excalibur::CBLAS_TRANSPOSE(TransB),
+            juliusblas::cblas_sgemm(juliusblas::CblasRowMajor,
+                                             juliusblas::CBLAS_TRANSPOSE(TransA),
+                                             juliusblas::CBLAS_TRANSPOSE(TransB),
                                              M, N, K, 1.5, A, lda, B, ldb, 0.2f, C1, N);
         }
         t2 = omp_get_wtime();

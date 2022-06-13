@@ -1,5 +1,5 @@
 #include "julius_gemm.hpp"
-#include "julius_gemm_align.hpp"
+#include "utils/julius_gemm_align.hpp"
 #include "julius_axpby.hpp"
 #include "utils/simd_types.hpp"
 

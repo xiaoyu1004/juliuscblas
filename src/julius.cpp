@@ -6,16 +6,16 @@
 #include "julius_scal.hpp"
 #include "julius_gemv.hpp"
 #include "julius_gemm.hpp"
-#include "julius.hpp"
 
-#include "Primitives/logger.hpp"
-#include "Primitives/simd_types.hpp"
+#include "julius/julius.hpp"
+
+#include "utils/simd_types.hpp"
 
 float cblas_sasum(const int n, const float *x, const int incx)
 {
     if (n <= 0)
     {
-        LOG(ERROR) << "Illegal vector size.";
+        LOGE("Illegal vector size.");
         return 0.0f;
     }
     CHECK_GT(incx, 0);
@@ -26,7 +26,7 @@ double cblas_dasum(const int n, const double *x, const int incx)
 {
     if (n <= 0)
     {
-        LOG(ERROR) << "Illegal vector size.";
+        LOGE("Illegal vector size.");
         return 0.0;
     }
     CHECK_GT(incx, 0);
@@ -48,7 +48,7 @@ void cblas_saxpby(const int n, const float alpha, const float *x,
 {
     if (n <= 0)
     {
-        LOG(ERROR) << "Illegal vector size.";
+        LOGE("Illegal vector size.");
         return;
     }
     CHECK_GT(incx, 0);
@@ -61,7 +61,7 @@ void cblas_daxpby(const int n, const double alpha, const double *x,
 {
     if (n <= 0)
     {
-        LOG(ERROR) << "Illegal vector size.";
+        LOGE("Illegal vector size.");
         return;
     }
     CHECK_GT(incx, 0);
@@ -73,7 +73,7 @@ float cblas_sdsdot(const int n, const float alpha, const float *x, const int inc
 {
     if (n <= 0)
     {
-        LOG(ERROR) << "Illegal vector size.";
+        LOGE("Illegal vector size.");
         return alpha;
     }
     CHECK_GT(incx, 0);
@@ -85,7 +85,7 @@ double cblas_dsdot(const int n, const float *x, const int incx, const float *y, 
 {
     if (n <= 0)
     {
-        LOG(ERROR) << "Illegal vector size.";
+        LOGE("Illegal vector size.");
         return 0.0;
     }
     CHECK_GT(incx, 0);
@@ -97,7 +97,7 @@ float cblas_sdot(const int n, const float *x, const int incx, const float *y, co
 {
     if (n <= 0)
     {
-        LOG(ERROR) << "Illegal vector size.";
+        LOGE("Illegal vector size.");
         return 0.0f;
     }
     CHECK_GT(incx, 0);
@@ -109,7 +109,7 @@ double cblas_ddot(const int n, const double *x, const int incx, const double *y,
 {
     if (n <= 0)
     {
-        LOG(ERROR) << "Illegal vector size.";
+        LOGE("Illegal vector size.");
         return 0.0;
     }
     CHECK_GT(incx, 0);
@@ -121,7 +121,7 @@ float cblas_snrm2(const int n, const float *x, const int incx)
 {
     if (n <= 0)
     {
-        LOG(ERROR) << "Illegal vector size.";
+        LOGE("Illegal vector size.");
         return 0.0f;
     }
     CHECK_GT(incx, 0);
@@ -132,7 +132,7 @@ double cblas_dnrm2(const int n, const double *x, const int incx)
 {
     if (n <= 0)
     {
-        LOG(ERROR) << "Illegal vector size.";
+        LOGE("Illegal vector size.");
         return 0.0;
     }
     CHECK_GT(incx, 0);
@@ -143,7 +143,7 @@ void cblas_sscal(const int n, const float alpha, float *x, const int incx)
 {
     if (n <= 0)
     {
-        LOG(ERROR) << "Illegal vector size.";
+        LOGE("Illegal vector size.");
         return;
     }
     CHECK_GT(incx, 0);
@@ -154,7 +154,7 @@ void cblas_dscal(const int n, const double alpha, double *x, const int incx)
 {
     if (n <= 0)
     {
-        LOG(ERROR) << "Illegal vector size.";
+        LOGE("Illegal vector size.");
         return;
     }
     CHECK_GT(incx, 0);
@@ -182,11 +182,11 @@ void cblas_sgemv(const enum CBLAS_LAYOUT order, const enum CBLAS_TRANSPOSE trans
         }
         else
         {
-            NOT_IMPLEMENTED << " error trans type in Julius sgemv.";
+            LOGE(" error trans type in Julius sgemv.");
         }
         break;
     case CblasColMajor:
-        NOT_IMPLEMENTED << " with CblasColMajor in Julius sgemv.";
+        LOGE(" with CblasColMajor in Julius sgemv.");
         break;
     default:
         if (trans == CblasNoTrans)
@@ -199,7 +199,7 @@ void cblas_sgemv(const enum CBLAS_LAYOUT order, const enum CBLAS_TRANSPOSE trans
         }
         else
         {
-            NOT_IMPLEMENTED << " error trans type in Julius sgemv.";
+            LOGE(" error trans type in Julius sgemv.\n");
         }
         break;
     }
@@ -242,11 +242,11 @@ void cblas_sgemm(const enum CBLAS_LAYOUT Order, const enum CBLAS_TRANSPOSE Trans
         }
         else
         {
-            NOT_IMPLEMENTED << " error trans type in Julius sgemm.";
+            LOGE(" error trans type in Julius sgemm.");
         }
         break;
     case CblasColMajor:
-        NOT_IMPLEMENTED << " with CblasColMajor in Julius sgemm.";
+        LOGE(" with CblasColMajor in Julius sgemm.");
         break;
     default:
         if (TransA == CblasNoTrans && TransB == CblasNoTrans)
@@ -267,7 +267,7 @@ void cblas_sgemm(const enum CBLAS_LAYOUT Order, const enum CBLAS_TRANSPOSE Trans
         }
         else
         {
-            NOT_IMPLEMENTED << " error trans type in Julius sgemm.";
+            LOGE(" error trans type in Julius sgemm.");
         }
         break;
     }
@@ -311,11 +311,11 @@ void cblas_fgemm(const enum CBLAS_LAYOUT Order, const enum CBLAS_TRANSPOSE Trans
         }
         else
         {
-            NOT_IMPLEMENTED << " error trans type in Julius sgemm.";
+            LOGE(" error trans type in Julius sgemm.");
         }
         break;
     case CblasColMajor:
-        NOT_IMPLEMENTED << " with CblasColMajor in Julius sgemm.";
+        LOGE(" with CblasColMajor in Julius sgemm.");
         break;
     default:
         if (TransA == CblasNoTrans && TransB == CblasNoTrans)
@@ -336,7 +336,7 @@ void cblas_fgemm(const enum CBLAS_LAYOUT Order, const enum CBLAS_TRANSPOSE Trans
         }
         else
         {
-            NOT_IMPLEMENTED << " error trans type in Julius sgemm.";
+            LOGE(" error trans type in Julius sgemm.");
         }
         break;
     }
@@ -361,7 +361,7 @@ void cblas_hgemm(const enum CBLAS_LAYOUT Order, const enum CBLAS_TRANSPOSE Trans
     }
     else
     {
-        NOT_IMPLEMENTED;
+        LOGE(" error trans type in Julius hgemm.");
     }
     if (TransB == CBLAS_TRANSPOSE::CblasNoTrans)
     {
@@ -375,7 +375,7 @@ void cblas_hgemm(const enum CBLAS_LAYOUT Order, const enum CBLAS_TRANSPOSE Trans
     }
     else
     {
-        NOT_IMPLEMENTED;
+        LOGE(" error trans type in Julius hgemm.");
     }
     cblas_sgemm(Order, TransA, TransB, M, N, K, alpha, f_A, lda, f_B, ldb, beta, f_C, ldc);
     // float2half(f_C, C, M * ldc);
