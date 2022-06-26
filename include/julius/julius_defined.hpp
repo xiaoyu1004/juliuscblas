@@ -31,7 +31,11 @@
 #endif
 #define LOGI(fmt, ...) LOGIT(fmt, DEFAULT_TAG, ##__VA_ARGS__)
 #define LOGW(fmt, ...) LOGWT(fmt, DEFAULT_TAG, ##__VA_ARGS__)
-#define LOGE(fmt, ...) LOGET(fmt, DEFAULT_TAG, ##__VA_ARGS__)
+#define LOGE(fmt, ...)                          \
+    {                                           \
+        LOGET(fmt, DEFAULT_TAG, ##__VA_ARGS__); \
+        std::terminate();                       \
+    }
 #define LOGE_IF(cond, fmt, ...)   \
     if (cond)                     \
     {                             \
